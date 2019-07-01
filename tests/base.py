@@ -19,7 +19,6 @@ ALL_FIELDS = [
     fields.Float,
     fields.Number,
     fields.DateTime,
-    fields.LocalDateTime,
     fields.Time,
     fields.Date,
     fields.TimeDelta,
@@ -167,7 +166,7 @@ class UserSchema(Schema):
     )
     created_iso = fields.DateTime(format="iso", attribute="created", dump_only=True)
     updated = fields.DateTime()
-    updated_local = fields.LocalDateTime(attribute="updated", dump_only=True)
+    # updated_local = fields.LocalDateTime(attribute="updated", dump_only=True)
     species = fields.String(attribute="SPECIES")
     id = fields.String(default="no-id")
     uppername = Uppercased(attribute="name", dump_only=True)
@@ -215,7 +214,7 @@ class UserMetaSchema(Schema):
     balance = fields.Decimal()
     is_old = fields.Method("get_is_old")
     lowername = fields.Function(get_lowername)
-    updated_local = fields.LocalDateTime(attribute="updated", dump_only=True)
+    # updated_local = fields.LocalDateTime(attribute="updated", dump_only=True)
     species = fields.String(attribute="SPECIES")
     homepage = fields.Url()
     email = fields.Email()
@@ -246,7 +245,7 @@ class UserMetaSchema(Schema):
             "balance",
             "is_old",
             "lowername",
-            "updated_local",
+            # "updated_local",
             "species",
             "registered",
             "hair_colors",
