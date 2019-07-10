@@ -1127,10 +1127,16 @@ class AwareDateTime(DateTime):
     """A formatted aware datetime string."""
     OBJ_TYPE = "aware datetime"
 
+    def __init__(self, format=None, default_timezone=None, **kwargs):
+        super().__init__(format=format, **kwargs)
+        self._default_timezone = default_timezone
+
     def _deserialize(self, value, attr, data, **kwargs):
         ret = super()._deserialize(value, attr, data, **kwargs)
         if not is_aware(ret):
-            raise self.fail("invalid", obj_type=self.OBJ_TYPE)
+            if self._default_timezone is None:
+                raise self.fail("invalid", obj_type=self.OBJ_TYPE)
+            ret = ret.replace(tzinfo=self._default_timezone)
         return ret
 
 
