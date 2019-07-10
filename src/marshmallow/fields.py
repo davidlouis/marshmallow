@@ -11,7 +11,12 @@ from collections.abc import Mapping as _Mapping
 
 from marshmallow import validate, utils, class_registry
 from marshmallow.base import FieldABC, SchemaABC
-from marshmallow.utils import is_collection, missing as missing_, resolve_field_instance, is_aware
+from marshmallow.utils import (
+    is_collection,
+    missing as missing_,
+    resolve_field_instance,
+    is_aware,
+)
 from marshmallow.exceptions import (
     ValidationError,
     StringNotCollectionError,
@@ -1108,6 +1113,7 @@ class DateTime(Field):
 
 class NaiveDateTime(DateTime):
     """A formatted naive datetime string."""
+
     OBJ_TYPE = "naive datetime"
 
     def __init__(self, format=None, timezone=None, **kwargs):
@@ -1125,6 +1131,7 @@ class NaiveDateTime(DateTime):
 
 class AwareDateTime(DateTime):
     """A formatted aware datetime string."""
+
     OBJ_TYPE = "aware datetime"
 
     def __init__(self, format=None, default_timezone=None, **kwargs):
